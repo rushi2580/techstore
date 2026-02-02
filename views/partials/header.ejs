@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href='/stylesheet/style.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <style>
+
+    </style>
+
+</head>
+
+<body>
+    <nav>
+        <div class="navbar">
+            <div style="display: flex;align-items: center;">
+                <button class="filter-btn " onclick="toggleFilter()">☰ </button>
+
+                <h1 style="margin-right: 20px;">TechStore</h1>
+                <div class="search-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="search-svg" viewBox="0 -960 960 960">
+                        <path
+                            d="M765-144 526-383q-30 22-65.79 34.5-35.79 12.5-76.18 12.5Q284-336 214-406t-70-170q0-100 70-170t170-70q100 0 170 70t70 170.03q0 40.39-12.5 76.18Q599-464 577-434l239 239-51 51ZM384-408q70 0 119-49t49-119q0-70-49-119t-119-49q-70 0-119 49t-49 119q0 70 49 119t119 49Z" />
+                    </svg>
+
+                    <form onsubmit="searchProducts(); return false;">
+                        <input type="text" id="searchinput" placeholder="Search products....">
+                    </form>
+
+                </div>
+
+            </div>
+
+            <div class="nav-icons">
+                <a href="/users/logout"><button class="sign-btn " style="color: red;">Logout</button></a>
+                <button class="sign-btn " onclick="SignIn()">Sign In </button>
+
+                <i class="fa-regular fa-heart"></i>
+
+
+                <a href="/cart" style="color: #000;"><i class="fa-solid fa-cart-shopping"></i></a>
+
+            </div>
+    </nav>

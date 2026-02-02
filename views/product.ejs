@@ -1,0 +1,34 @@
+<%- include('./partials/header') %>
+
+    <div class="wrapper">
+        <div class="sidebar">
+            <div class="links">
+                <a href="">All Products</a>
+                <a href="">Create New Product</a>
+            </div>
+        </div>
+
+        <main class="main-content">
+            <h2>Create New Product</h2>
+            <form autocomplete="off" action="/product/create" method="post" enctype="multipart/form-data">
+                <div class="section">
+                    <h3>Product Details</h3>
+                    <div class="form-group">
+                        <label>Product Image</label>
+                        <input name="image" type="file"> 
+                    </div>
+                    <div class="grid-2">
+                        <input type="text" name="type" class="prodinput" placeholder="Product Type">
+                        <input type="text" class="prodinput" name="name"  placeholder="Product Name">
+                        <input type="number" class="prodinput" name="price"  placeholder="Product Price">
+                        <input type="number" name="discount" class="prodinput"  placeholder="Discount Price">
+                    </div>
+                </div>
+
+
+                <input class="submit-btn" type="submit" value="Create New Product">
+            </form>
+        </main>
+    </div>
+
+    <%- include('./partials/footer') %>

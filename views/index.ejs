@@ -1,0 +1,433 @@
+<%- include('./partials/header.ejs') %>
+    <% if(success.length> 0){ %>
+        <div class="flash-success">
+            <span class="">
+                <%= success[0] %>
+            </span>
+        </div>
+        <% } %>
+
+            <% if(error.length> 0){ %>
+                <div class="flash-error">
+                    <span class="">
+                        <%= error[0] %>
+                    </span>
+                </div>
+                <% } %>
+                    <div class="container">
+
+                        <div class="page-content">
+
+                            <div class="box1 mobile filter">
+
+                                <button class="close-filter" onclick="toggleFilter()">✕</button>
+
+                                <div class="category-box">
+                                    <h3>Categories</h3>
+
+                                    <label class="category-item">
+                                        <input type="checkbox" id="category" name="category" value="audio"
+                                            onchange="categoryfilter()">
+                                        <span>Audio</span>
+                                    </label>
+
+                                    <label class="category-item">
+                                        <input type="checkbox" id="category" value="accessories" name="category"
+                                            onchange="categoryfilter()">
+                                        <span>Accessories</span>
+                                    </label>
+
+                                    <label class="category-item">
+                                        <input type="checkbox" id="category" name="category" value="wearables"
+                                            onchange="categoryfilter()">
+                                        <span>Wearables</span>
+                                    </label>
+
+                                    <label class="category-item">
+                                        <input type="checkbox" id="category" name="category" value="smartphones"
+                                            onchange="categoryfilter()">
+                                        <span>Smartphones</span>
+                                    </label>
+
+                                    <label class="category-item">
+                                        <input type="checkbox" id="category" name="category" value="computers"
+                                            onchange="categoryfilter()">
+                                        <span>Computers</span>
+                                    </label>
+
+
+                                    <label class="category-item">
+                                        <input type="checkbox" id="category" value="tablets" name="category"
+                                            onchange="categoryfilter()">
+                                        <span>Tablets</span>
+                                    </label>
+
+
+
+                                </div>
+
+                                <div class="price-range">
+                                    <div class="price-box">
+                                        <h3>Price Range</h3>
+
+                                        <div class="range-wrapper">
+                                            <div class="slider-track"></div>
+
+                                            <input type="range" id="minRange" min="0" max="100000" value="0"
+                                                onchange='applyPriceFilter()'>
+                                            <input type="range" id="maxRange" min="0" max="100000" value="100000"
+                                                onchange="applyPriceFilter()">
+                                        </div>
+
+                                        <div class="price-values">
+                                            <span id="minPrice"></span>
+                                            <span id="maxPrice"></span>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                                <div class="rating-box">
+                                    <h3>Rating</h3>
+
+                                    <label class="rating">
+                                        <input type="checkbox">
+                                        <span>4+ Stars</span>
+                                    </label>
+
+                                    <label class="rating">
+                                        <input type="checkbox">
+                                        <span>3+ Stars</span>
+                                    </label>
+
+                                    <label class="rating">
+                                        <input type="checkbox">
+                                        <span>2+ Stars</span>
+                                    </label>
+
+                                    <label class="rating">
+                                        <input type="checkbox">
+                                        <span>1+ Stars</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="box2">
+                                <h2>All Products</h2>
+                                <div class="products" id="products">
+
+                                    <% products.forEach(prod=> { %>
+                                        <div class="product1">
+                                            <div class="img-box">
+                                                <img src="data:image/png;base64,<%= prod.image.toString("base64") %>"
+                                                alt="">
+                                            </div>
+                                            <div class="content-box">
+                                                <p>
+                                                    <%= prod.type %>
+                                                </p>
+                                                <h3>
+                                                    <%=prod.name %>
+                                                </h3>
+                                                <div class="pricebox">
+                                                    <h3>$299</h3>
+                                                    <p>$<%=prod.price %>
+                                                    </p>
+                                                    <p>
+                                                        <%=prod.discount %>% off
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <a href="/cart/<%= prod._id %>">
+                                                <div class="addbtn"> <button class="btn"><i style="margin-right: 5px;"
+                                                            class="fa-solid fa-cart-shopping"></i>
+                                                        Add to Cart</button></div>
+                                            </a>
+                                        </div>
+                                        <% }); %>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="auth-overlay"></div>
+                    <div class="authbox">
+                        <button class="close-authbox" onclick="SignIn()">✕</button>
+                        <div class="loginpage">
+
+                            <div class="auth-text">
+
+                                <h3 style="margin: 0; font-size: 30px; font-weight:normal;">Welcome back</h3>
+                                <p style="margin: 9px; color: #777777; font-size: small;">Sign in to your TechStore
+                                    account
+                                </p>
+
+                            </div>
+                            <div class="logo">
+                                <p style="margin: 0; font-size:x-large; font-weight: 600;">TS</p>
+                            </div>
+                            <div class="auth-input">
+
+                                <form action="/users/login" method="POST">
+                                    <label for="Email" style="font-size: small; ">Email
+                                        <div class="input-wrapper">
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="20px" class="mail-svg"
+                                                viewBox="0 -960 960 960" width="20px" fill="#1f1f1f">
+                                                <path
+                                                    d="M168-192q-29.7 0-50.85-21.16Q96-234.32 96-264.04v-432.24Q96-726 117.15-747T168-768h624q29.7 0 50.85 21.16Q864-725.68 864-695.96v432.24Q864-234 842.85-213T792-192H168Zm312-240L168-611v347h624v-347L480-432Zm0-85 312-179H168l312 179Zm-312-94v-85 432-347Z" />
+                                            </svg>
+                                            <input type="email" name="email" placeholder="name@example.com"
+                                                style="margin-top: 5px; margin-bottom: 10px;" required>
+
+                                    </label>
+
+                                    <label for="password" style="font-size: small;">password
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="lock-svg" height="20px"
+                                            viewBox="0 -960 960 960" width="20px" fill="#1f1f1f">
+                                            <path
+                                                d="M263.72-96Q234-96 213-117.15T192-168v-384q0-29.7 21.15-50.85Q234.3-624 264-624h24v-96q0-79.68 56.23-135.84 56.22-56.16 136-56.16Q560-912 616-855.84q56 56.16 56 135.84v96h24q29.7 0 50.85 21.15Q768-581.7 768-552v384q0 29.7-21.16 50.85Q725.68-96 695.96-96H263.72Zm.28-72h432v-384H264v384Zm216.21-120Q510-288 531-309.21t21-51Q552-390 530.79-411t-51-21Q450-432 429-410.79t-21 51Q408-330 429.21-309t51 21ZM360-624h240v-96q0-50-35-85t-85-35q-50 0-85 35t-35 85v96Zm-96 456v-384 384Z" />
+                                        </svg>
+                                        <input type="password" name="password" placeholder="•••••••"
+                                            style="margin-top: 5px; margin-bottom: 30px;" required>
+                                    </label>
+
+                                    <button class="btn" type="submit">Sign In</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div style="display: flex; margin-right: 0;">
+                            <p style=" color: #777777; font-size: small;">Don't have an account?</p>
+                            <button class="auth-ui-button" onclick="loginup()">Sign up</button>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="registerpage">
+
+                        <div class="auth-text">
+
+                            <h3 style="margin: 0; font-size: 30px; font-weight:normal;">Create an account</h3>
+                            <p style="margin: 9px; color: #777777; font-size: small;">Sign up to start shopping with
+                                TechStore
+                            </p>
+                        </div>
+                        <div class="logo">
+                            <p style="margin: 0; font-size:x-large; font-weight: 600;">TS</p>
+                        </div>
+                        <div class="auth-input">
+
+                            <form action="/users/register" method="POST">
+                                <label for="Email" style="font-size: small; ">Email
+                                    <div class="input-wrapper">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" class="mail-svg"
+                                            viewBox="0 -960 960 960" width="20px" fill="#1f1f1f">
+                                            <path
+                                                d="M168-192q-29.7 0-50.85-21.16Q96-234.32 96-264.04v-432.24Q96-726 117.15-747T168-768h624q29.7 0 50.85 21.16Q864-725.68 864-695.96v432.24Q864-234 842.85-213T792-192H168Zm312-240L168-611v347h624v-347L480-432Zm0-85 312-179H168l312 179Zm-312-94v-85 432-347Z" />
+                                        </svg>
+                                        <input type="email" name="email" placeholder="name@example.com"
+                                            style="margin-top: 5px; margin-bottom: 10px;" required>
+
+                                </label>
+
+                                <label for="password" style="font-size: small;">password
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="lock-svg" height="20px"
+                                        viewBox="0 -960 960 960" width="20px" fill="#1f1f1f">
+                                        <path
+                                            d="M263.72-96Q234-96 213-117.15T192-168v-384q0-29.7 21.15-50.85Q234.3-624 264-624h24v-96q0-79.68 56.23-135.84 56.22-56.16 136-56.16Q560-912 616-855.84q56 56.16 56 135.84v96h24q29.7 0 50.85 21.15Q768-581.7 768-552v384q0 29.7-21.16 50.85Q725.68-96 695.96-96H263.72Zm.28-72h432v-384H264v384Zm216.21-120Q510-288 531-309.21t21-51Q552-390 530.79-411t-51-21Q450-432 429-410.79t-21 51Q408-330 429.21-309t51 21ZM360-624h240v-96q0-50-35-85t-85-35q-50 0-85 35t-35 85v96Zm-96 456v-384 384Z" />
+                                    </svg>
+                                    <input type="password" name="password" placeholder="•••••••"
+                                        style="margin-top: 5px; margin-bottom: 30px;" required>
+                                </label>
+
+                                <button class="btn" type="submit">Create Account</button>
+                            </form>
+
+                        </div>
+
+                    </div>
+                    <div style="display: flex; margin-right: 0;">
+                        <p style=" color: #777777; font-size: small;">Already have an account?</p>
+                        <button class="auth-ui-button" onclick="loginup()">Sign In</button>
+                    </div>
+
+                    </div>
+                    </div>
+                    <script>
+
+                        function toggleFilter() {
+                            document.querySelector('.box1').classList.toggle('active');
+                        }
+                        function SignIn() {
+
+                            document.querySelector('.auth-overlay').classList.toggle('active');
+                            document.querySelector('.authbox').classList.toggle('active');
+
+                        }
+
+                        function loginup() {
+                            document.querySelector('.loginpage').classList.toggle('active');
+                            document.querySelector('.registerpage').classList.toggle('active')
+
+                        }
+
+
+                        setTimeout(() => {
+                            const flash = document.querySelector(".flash-success");
+                            const flashError = document.querySelector(".flash-error");
+
+                            if (flash) {
+                                flash.style.opacity = "0";
+                                flash.style.transform = "translate(-50%, -10px)";
+
+                                setTimeout(() => flash.remove(), 400);
+                            }
+
+                            if (flashError) {
+                                flashError.style.opacity = "0";
+                                flashError.style.transform = "translate(-50%, -10px)";
+
+                                setTimeout(() => flashError.remove(), 400);
+                            }
+                        }, 2000);
+
+                        let minrange = document.getElementById("minRange")
+                        let minval = document.querySelector('#minPrice')
+                        minval.innerText = `$${minrange.value}`;
+                        minrange.addEventListener("input", () => {
+                            minval.innerText = `$${minrange.value}`;
+                        });
+
+                        let maxRange = document.getElementById('maxRange')
+                        let maxval = document.getElementById('maxPrice')
+                        maxval.innerHTML = `$${maxRange.value}`;
+
+                        maxRange.addEventListener("input", () => {
+                            maxval.innerText = `$${maxRange.value}`;
+                        });
+
+                        function applyPriceFilter() {
+                            let min = document.getElementById("minRange").value;
+                            let max = document.getElementById("maxRange").value;
+
+
+
+
+                            fetch(`/api/products?min=${min}&max=${max}`)
+                                .then(res => res.json())
+                                .then(products => {
+
+                                    if (products.length === 0) {
+                                        productsDiv.innerHTML = "<h3>No products found</h3>";
+                                        return;
+                                    }
+                                  
+                                    renderProducts(products);
+                                    //     console.log(products);
+                                })
+                                .catch(err => console.error(err));
+
+                        }
+
+                        function searchProducts() {
+                            let input = document.getElementById('searchinput').value;
+
+                        
+                            fetch(`api/search?input=${input}`)
+                                .then(res => res.json())
+                                .then(products => {
+                                    if (!input.trim()) {
+                                        fetch('/api/product')
+                                            .then(res => res.json())
+                                            .then(products => {
+                                                renderProducts(products);
+                                            })
+                                            .catch(err => console.error(err));
+                                        return;
+                                    }
+                                    else if (products.length === 0) {
+                                        productsDiv.innerHTML = "<h3>No products found</h3>";
+                                        return;
+                                    }
+                                    renderProducts(products)
+                                })
+                                .catch(err => console.error(err));
+                        }
+
+                        function categoryfilter() {
+
+                            const checkedValues = Array.from(document.querySelectorAll('input[name="category"]:checked'))
+                                .map(checkbox => checkbox.value);
+                            checkedValues.join(",");
+
+                            if (checkedValues.length === 0) {
+                                fetch('/api/product')
+                                    .then(res => res.json())
+                                    .then(products => {
+                                        console.log("All products count:", products.length);
+                                        renderProducts(products);
+                                    })
+                                    .catch(err => console.error(err));
+                                return;
+                            }
+
+
+                            fetch(`/api/category?categories=${checkedValues}`)
+                                .then(res => res.json())
+                                .then(products => {
+                                    if (products.length === 0) {
+                                        productsDiv.innerHTML = "<h3>No products found</h3>";
+                                        return;
+                                    }
+                                    renderProducts(products);
+                                })
+                                .catch(err => console.error(err));
+                        }
+
+                        let productsDiv = document.getElementById("products");
+
+                        function renderProducts(products) {
+                            productsDiv.innerHTML = "";
+
+                            products.forEach(p => {
+                                let div = document.createElement("div");
+                                div.className = "product1";
+
+                                div.innerHTML = `
+                           
+                                <div class="img-box">
+                                                <img src="data:image/png;base64,${p.image}" alt="">
+                                            </div>
+                                            <div class="content-box">
+                                                <p>${p.type}</p>
+                                                <h3>
+                                                    ${p.name} 
+                                                </h3>
+                                                <div class="pricebox">
+                                                    <h3>$299</h3>
+                                                    <p>$${p.price}
+                                                    </p>
+                                                    <p>
+                                                    ${p.discount}% off
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="addbtn"> <button class="btn"><i style="margin-right: 5px;"
+                                                        class="fa-solid fa-cart-shopping"></i>
+                                                    Add to Cart</button></div>`
+                                productsDiv.appendChild(div);
+
+                            });
+                        }
+
+
+
+
+                    </script>
+
+                    <%- include('./partials/footer.ejs') %>
