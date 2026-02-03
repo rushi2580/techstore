@@ -682,6 +682,32 @@ display: none;
   border-top: 1px solid #000;
 }
 
+.img-box {
+  position: relative; /* anchor for tag */
+  width: 100%;
+}
+
+.img-box img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+}
+
+.product-tag {
+  position: absolute;
+  top: 7px;
+  left: 6px;
+
+  background: #FB2C36;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+
 /* Total */
 .price-section .total {
   display: flex;

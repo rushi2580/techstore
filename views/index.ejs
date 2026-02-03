@@ -122,6 +122,11 @@
                                             <div class="img-box">
                                                 <img src="data:image/png;base64,<%= prod.image.toString("base64") %>"
                                                 alt="">
+                                                <% if (prod.tag) { %>
+                                                    <span class="product-tag <%= prod.tag %>">
+                                                        <%= prod.tag %>
+                                                    </span>
+                                                    <% } %>
                                             </div>
                                             <div class="content-box">
                                                 <p>
@@ -326,7 +331,7 @@
                                         productsDiv.innerHTML = "<h3>No products found</h3>";
                                         return;
                                     }
-                                  
+
                                     renderProducts(products);
                                     //     console.log(products);
                                 })
@@ -337,7 +342,7 @@
                         function searchProducts() {
                             let input = document.getElementById('searchinput').value;
 
-                        
+
                             fetch(`api/search?input=${input}`)
                                 .then(res => res.json())
                                 .then(products => {

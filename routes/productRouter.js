@@ -11,12 +11,13 @@ router.post('/create', upload.single('image'), async (req, res) => {
 
   try{
         
-    const{  name , discount, price, type } = req.body;
+    const{  name , discount, price, type,tag } = req.body;
         const prod =  await productmodel.create({
             name,
             image:req.file.buffer,
             price,
             discount,
+            tag,
             type
         })
       
